@@ -56,6 +56,7 @@ def sales_after_11_months():
 overall_sales = sales_from_chemical_free_farming()
 sales_11_months = sales_after_11_months()
 
+print("Results: ")
 print("Overall Sales from 80 acres of land:", overall_sales)
 print("Sales Realization after 11 months from chemical-free farming:", sales_11_months)
 
