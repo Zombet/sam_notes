@@ -17,15 +17,4 @@ if a>=len(permutations):
 else:
     print("".join(list(permutations[a])))'''
 
-'''i = 250
-while len(str(i)) > 72: 
-    i *= 2
-else: 
-    i //= 2
-print(i)'''
 
-lst = [[c for c in range(r)] for r in range(3)]
-for x in lst:
-    for y in x:
-        if y < 2:
-            print('*', end='')

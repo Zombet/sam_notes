@@ -28,13 +28,11 @@ def merge(left, right):
             result.append(right[j])
             j += 1
     
-    # Add remaining elements from left or right
     result.extend(left[i:])
     result.extend(right[j:])
     
     return result
 
-# Example usage
 arr = [38, 27, 43, 3, 9, 82, 10]
 sorted_arr = merge_sort(arr)
 print(sorted_arr)
