@@ -22,7 +22,7 @@ class Stack:
         if len(self.stk) == 0:
             print("Stack is empty!")
             return
-        print("Stack elements are:", self.stk)
+        print("Stack elements are:", self.stk[::-1])
 
 
 def menu():
