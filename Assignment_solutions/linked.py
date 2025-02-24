@@ -170,7 +170,7 @@ def menu():
             display_reverse(head)
             print("None")
         elif choice == 9:
-            print("Exiting the program. Goodbye!")
+            print("Exiting the program. Thanks for using Linked List!")
             break
         else:
             print("Invalid choice. Please try again.")
