@@ -54,8 +54,8 @@ layout = go.Layout(
     updatemenus=[
         dict(
             type="buttons",
-            x=0.1,
-            y=1.15,
+            x=1.2,
+            y=0.8,
             buttons=[
                 dict(
                     label="Day",

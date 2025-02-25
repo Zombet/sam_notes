@@ -18,18 +18,19 @@ except FileNotFoundError:
 discount_counts = df['Discount (%)'].value_counts().reset_index()
 discount_counts.columns = ['Discount (%)', 'Number of People']
 
-# Sort by discount percentage for better visualization
 discount_counts = discount_counts.sort_values(by='Discount (%)')
 
-# Create a donut chart
 fig = go.Figure(data=[go.Pie(
-    labels=discount_counts['Discount (%)'].astype(str) + '%',  # Labels for each slice
-    values=discount_counts['Number of People'],  # Size of each slice
-    hole=0.6,  # Creates a donut chart
-    marker=dict(colors=pastel_colors)  # Use a pastel color palette
+    labels=discount_counts['Discount (%)'].astype(str) + '%', 
+    values=discount_counts['Number of People'], 
+    hole=0.6, 
+    marker=dict(colors=pastel_colors), 
+    textinfo='label+value',  
+    texttemplate='%{label}<br>%{value} customers', 
+    hoverinfo='label+percent'
 )])
 
-# Add title and center text
+
 fig.update_layout(
     title_text="Distribution of Discount Percentages",
     title_font_size=20,
@@ -43,6 +44,5 @@ fig.update_layout(
     )],
     showlegend=True
 )
-
 
 fig.show()
