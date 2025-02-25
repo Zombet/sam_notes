@@ -1,0 +1,152 @@
+*********************************************SIC HACKATHON*******************************************************************
+
+The dataset is loaded from a csv file using pandas.
+Error handing( using try-except block) is done to ensure file path is correct and it exists.
+
+1.REVENUE CALCULATION (per day,per month and per year)
+
+""""Importing Libraries""""
+
+'plotly.graph_objects' is used for creating interactive visualizations. 
+
+'pd.to_datetime()' is used to converts the Visit Date column to a datetime object for easier manipulation.
+
+df['Visit Date Only'].dt.date : Extracts only the date part (without time) from the Visit Date column.
+
+""""Calculations""""
+
+revpd = df.groupby('Visit Date Only')['Revenue'].sum()          : Total revenue per day.
+
+df['Month'] = df['Visit Date'].dt.to_period('M').astype(str)
+revpm = df.groupby('Month')['Revenue'].sum()                    : Total revenue per month.
+
+df['Year'] = df['Visit Date'].dt.to_period('Y').astype(str)
+revpy = df.groupby('Year')['Revenue'].sum()                     : Total revenue per year.
+
+""""Creating Bar Chart """"
+
+go.Bar(): Creates bar charts for revenue data.
+
+x: The time period (day, month, or year).
+
+y: The revenue values.
+
+name: The name of the trace (used in the legend).
+
+marker: Customizes the color of the bars.
+
+visible: Determines whether the trace is initially visible in the plot.
+
+""""Setting layouts""""
+
+go.Layout(): Defines the layout of the plot.
+
+title: Sets the title of the plot.
+
+xaxis and yaxis: Configures the axis titles.
+
+updatemenus: Adds interactive buttons to switch between daily, monthly, and yearly views.
+
+buttons: Defines three buttons for "Day", "Month", and "Year".
+
+label: The text displayed on the button.
+
+method: Specifies the method to update the plot.
+
+args: Determines which trace is visible and updates the x-axis title accordingly.
+
+showlegend: Displays the legend.
+
+""""Creating and Displaying the bar graph""""
+
+go.Figure(): Combines the traces and layout into a single figure.
+
+fig.show(): Displays the interactive plot in a web browser.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.REVENUE PER SERVICE TYPE 
+
+""""Importing Libraries""""
+
+pandas: Used for data manipulation and analysis. It provides data structures like DataFrames to handle tabular data.
+
+plotly.express: A high-level interface for creating interactive visualizations with minimal code.
+
+""""Revenue calculation per service type""""
+
+groupby('Service')['Revenue'].sum(): Groups the data by the Service column and calculates the total revenue for each service type.
+
+reset_index(): Converts the grouped data back into a DataFrame.
+
+sort_values(by='Revenue', ascending=False): Sorts the DataFrame by the Revenue column in descending order, so the service with the highest revenue appears first.
+
+""""Creating Bar chart""""
+
+px.bar(): Creates a bar chart using plotly.express.
+
+rev: The DataFrame containing the aggregated revenue data.
+
+x='Service': The x-axis represents the service types.
+
+y='Revenue': The y-axis represents the total revenue for each service type.
+
+title: Sets the title of the chart.
+
+labels: Customizes the axis labels.
+
+text='Revenue': Displays the revenue values on top of each bar.
+
+color='Service': Colors the bars based on the service type.
+
+color_discrete_sequence: Uses a pastel color palette for the bars.
+
+""""Setting Layouts""""
+
+fig.update_traces(): Customizes the text displayed on the bars.
+
+texttemplate='%{text:.2f}': Formats the revenue values to two decimal places.
+
+textposition='outside': Positions the text outside the bars for better readability.
+
+fig.update_layout(): Customizes the layout of the chart.
+
+xaxis_title and yaxis_title: Sets the titles for the x-axis and y-axis.
+
+showlegend=False: Hides the legend (since the bars are already labeled).
+
+template="plotly_white": Uses a clean, white background for the chart.
+
+title_font_size=20: Sets the font size of the chart title.
+
+title_x=0.5: Centers the chart title.
+
+""""Displaying the Bar Graph""""
+
+fig.show()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Discount representation
+
+""""Extraction of data from dataset""""
+
+The "Discount (%)" column is grouped, and the number of customers for each discount percentage is counted using 'value_counts()'.
+
+The results are sorted by discount percentage.
+
+""""Creation of Donut chart """"
+
+A donut chart is created using 'plotly.graph_objects.Pie' .
+
+The 'hole=0.6' parameter creates the donut shape.
+
+The 'textinfo' and 'texttemplate' properties are used to display the discount percentage and the number of customers on each partition.
+
+The chart title and center text are added using 'update_layout'.
+
+'marker=dict(colors=pastel_colors)' sets the color using the above define 'pastel_color' list which contains the color codes.
+
+The 'annotations' parameter is used to add text in the center of the donut chart.
+
+""""Displaying the Donut Chart""""
+
+'fig.show()' is used to display the above defined Donut chart.
+
+__________________________________________________________________________________________________________________________________________________________________________
