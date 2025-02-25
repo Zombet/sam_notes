@@ -14,34 +14,34 @@ df['Visit Date'] = pd.to_datetime(df['Visit Date'])
 
 df['Visit Date Only'] = df['Visit Date'].dt.date
 
-revenue_per_day = df.groupby('Visit Date Only')['Revenue'].sum()
+revpd = df.groupby('Visit Date Only')['Revenue'].sum()
 
 
 df['Month'] = df['Visit Date'].dt.to_period('M').astype(str)
-revenue_per_month = df.groupby('Month')['Revenue'].sum()
+revpm = df.groupby('Month')['Revenue'].sum()
 
 df['Year'] = df['Visit Date'].dt.to_period('Y').astype(str)
-revenue_per_year = df.groupby('Year')['Revenue'].sum()
+revpy = df.groupby('Year')['Revenue'].sum()
 
 trace_day = go.Bar(
-    x=revenue_per_day.index,
-    y=revenue_per_day.values,
+    x=revpd.index,
+    y=revpd.values,
     name="Revenue Per Day",
     marker=dict(color='light steel blue'),
     visible=True 
 )
 
 trace_month = go.Bar(
-    x=revenue_per_month.index,
-    y=revenue_per_month.values,
+    x=revpm.index,
+    y=revpm.values,
     name="Revenue Per Month",
     marker=dict(color='powderblue'),
     visible=False 
 )
 
 trace_year = go.Bar(
-    x=revenue_per_year.index,
-    y=revenue_per_year.values,
+    x=revpy.index,
+    y=revpy.values,
     name="Revenue Per Year",
     marker=dict(color='skyblue'),
     visible=False 
